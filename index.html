@@ -109,6 +109,10 @@
 </div>
 </div>
 </section>
+  <div id="view-counter">
+  Просмотров страницы: <span id="views">0</span>
+</div>
+
 <script>
 // ===== Тексты для двух языков =====
 const i18n = {
@@ -176,7 +180,20 @@ toggleBtn.addEventListener("click", () => {
 </script>
 
 
+<script>
+  // Уникальные имена для сайта
+  const namespace = "kukolnye-mebeli"; // уникальное имя для всего сайта
+  const key = "mainpage"; // ключ для этой конкретной страницы
+
+  fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("views").textContent = data.value;
+    })
+    .catch(err => console.error("Ошибка CountAPI:", err));
+</script>
 
 </body>
 
 </html>
+
